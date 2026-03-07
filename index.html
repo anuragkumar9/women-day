@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Women's Day Surprise ❤️</title>
+<title>Women's Day Surprise</title>
 
 <style>
 
@@ -12,7 +12,7 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:#000;
+background:#111;
 font-family:Arial;
 color:white;
 text-align:center;
@@ -22,29 +22,37 @@ overflow:hidden;
 #heart{
 font-size:120px;
 cursor:pointer;
-animation:beat 1s infinite;
+transition:0.3s;
 }
 
-@keyframes beat{
-0%{transform:scale(1)}
-50%{transform:scale(1.2)}
-100%{transform:scale(1)}
+#heart:hover{
+transform:scale(1.2);
 }
 
-#message{
+#question{
 display:none;
-font-size:30px;
+font-size:28px;
+margin-top:20px;
 }
 
-.heart{
-position:absolute;
-font-size:25px;
-animation:explode 3s linear forwards;
+button{
+padding:10px 20px;
+font-size:18px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
 }
 
-@keyframes explode{
-0%{transform:scale(0);opacity:1;}
-100%{transform:scale(2) translateY(-400px);opacity:0;}
+#yes{
+background:#ff4d88;
+color:white;
+}
+
+#no{
+background:gray;
+color:white;
+position:relative;
 }
 
 </style>
@@ -53,46 +61,36 @@ animation:explode 3s linear forwards;
 
 <body>
 
-<div id="heart" onclick="start()">❤️</div>
+<div>
 
-<div id="message"></div>
+<div id="heart" onclick="showQuestion()">❤️</div>
 
-<audio id="music">
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
+<div id="question">
+<p>Minti ❤️<br>Will you always be my favorite woman?</p>
+
+<button id="yes" onclick="yes()">Yes</button>
+<button id="no" onmouseover="move()">No</button>
+
+</div>
+
+</div>
 
 <script>
 
-let text="Happy Women's Day Minti ❤️ You are the most beautiful woman in my life.";
-let i=0;
-
-function start(){
+function showQuestion(){
 document.getElementById("heart").style.display="none";
-document.getElementById("message").style.display="block";
-document.getElementById("music").play();
-type();
-explode();
+document.getElementById("question").style.display="block";
 }
 
-function type(){
-if(i<text.length){
-document.getElementById("message").innerHTML+=text.charAt(i);
-i++;
-setTimeout(type,50);
-}
+function yes(){
+document.body.innerHTML="<h1>❤️ Happy Women's Day Minti ❤️</h1><p>You make my world beautiful.</p>";
 }
 
-function explode(){
-for(let i=0;i<40;i++){
-let h=document.createElement("div");
-h.innerHTML="❤️";
-h.classList.add("heart");
-h.style.left=Math.random()*100+"vw";
-h.style.top=Math.random()*100+"vh";
-document.body.appendChild(h);
-
-setTimeout(()=>{h.remove()},3000);
-}
+function move(){
+let btn=document.getElementById("no");
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"%";
+btn.style.top=Math.random()*80+"%";
 }
 
 </script>
