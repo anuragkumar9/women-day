@@ -5,13 +5,14 @@
 <title>Women's Day Surprise ❤️</title>
 
 <style>
+
 body{
 margin:0;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:#000;
+background:black;
 font-family:Arial;
 color:white;
 text-align:center;
@@ -32,14 +33,39 @@ animation:beat 1s infinite;
 
 #message{
 display:none;
-font-size:26px;
 max-width:80%;
+font-size:24px;
 line-height:1.6;
 }
 
-.heart{
+#question{
+display:none;
+margin-top:25px;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+margin:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#yes{
+background:#ff4d88;
+color:white;
+}
+
+#no{
+background:gray;
+color:white;
+position:relative;
+}
+
+.fheart{
 position:absolute;
-font-size:24px;
+font-size:25px;
 animation:explode 3s linear forwards;
 }
 
@@ -47,6 +73,7 @@ animation:explode 3s linear forwards;
 0%{transform:scale(0);opacity:1;}
 100%{transform:scale(2) translateY(-400px);opacity:0;}
 }
+
 </style>
 </head>
 
@@ -56,39 +83,57 @@ animation:explode 3s linear forwards;
 
 <div id="message"></div>
 
+<div id="question">
+<p>Aditi ❤️<br>Will you be mine?</p>
+<button id="yes" onclick="yes()">Yes</button>
+<button id="no" onmouseover="move()">No</button>
+</div>
+
 <script>
 
-let text = "Happy Women's Day Aditi ❤️\n\nI know these may seem like just words, but I truly want to thank you for being such a great woman. Thank you for being the calmness I needed in my life. Through everything, you stayed strong — a truly brave woman. Thank you so much, Aditi.";
+let text="Happy Women's Day Aditi ❤️\n\nI know these are just words, but I truly want to thank you for being such a great woman. Thank you for being the calmness I needed in my life. Through everything you stayed strong, a brave and beautiful woman. Thank you so much Aditi.";
 
-let i = 0;
+let i=0;
 
 function start(){
 document.getElementById("heart").style.display="none";
 document.getElementById("message").style.display="block";
 type();
-explode();
 }
 
 function type(){
-if(i < text.length){
-document.getElementById("message").innerHTML += text.charAt(i);
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i);
 i++;
 setTimeout(type,40);
+}else{
+document.getElementById("question").style.display="block";
 }
+}
+
+function move(){
+let btn=document.getElementById("no");
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"%";
+btn.style.top=Math.random()*80+"%";
+}
+
+function yes(){
+document.body.innerHTML="<h1>❤️ Aditi ❤️</h1><h2>You just made me the happiest person.</h2>";
+explode();
 }
 
 function explode(){
 for(let i=0;i<40;i++){
 let h=document.createElement("div");
 h.innerHTML="❤️";
-h.classList.add("heart");
+h.classList.add("fheart");
 h.style.left=Math.random()*100+"vw";
 h.style.top=Math.random()*100+"vh";
 document.body.appendChild(h);
+}
+}
 
-setTimeout(()=>{h.remove()},3000);
-}
-}
 </script>
 
 </body>
