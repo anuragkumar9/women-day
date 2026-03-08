@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Women's Day Surprise ❤️</title>
+<title>Women's Day Surprise</title>
 
 <style>
 
@@ -12,7 +12,7 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:black;
+background:#000;
 font-family:Arial;
 color:white;
 text-align:center;
@@ -31,16 +31,11 @@ animation:beat 1s infinite;
 100%{transform:scale(1)}
 }
 
-#message{
-display:none;
+.box{
 max-width:80%;
 font-size:24px;
 line-height:1.6;
-}
-
-#question{
 display:none;
-margin-top:25px;
 }
 
 button{
@@ -52,16 +47,8 @@ border-radius:10px;
 cursor:pointer;
 }
 
-#yes{
-background:#ff4d88;
-color:white;
-}
-
-#no{
-background:gray;
-color:white;
-position:relative;
-}
+#yes{background:#ff4d88;color:white;}
+#no{background:gray;color:white;}
 
 .fheart{
 position:absolute;
@@ -81,17 +68,29 @@ animation:explode 3s linear forwards;
 
 <div id="heart" onclick="start()">❤️</div>
 
-<div id="message"></div>
+<div id="message" class="box"></div>
 
-<div id="question">
-<p>Aditi ❤️<br>Will you be mine?</p>
+<div id="q1" class="box">
+<p>Aditi ❤️<br>Do you know how special you are to me?</p>
+<button onclick="next('q2')">Yes</button>
+<button onclick="next('q2')">Maybe</button>
+</div>
+
+<div id="q2" class="box">
+<p>Will you always stay in my life?</p>
+<button onclick="next('q3')">Of course</button>
+<button onclick="next('q3')">I hope so</button>
+</div>
+
+<div id="q3" class="box">
+<p>Will you be mine?</p>
 <button id="yes" onclick="yes()">Yes</button>
 <button id="no" onmouseover="move()">No</button>
 </div>
 
 <script>
 
-let text="Happy Women's Day Aditi ❤️\n\nI know these are just words, but I truly want to thank you for being such a great woman. Thank you for being the calmness I needed in my life. Through everything you stayed strong, a brave and beautiful woman. Thank you so much Aditi.";
+let text="Happy Women's Day Aditi ❤️\n\nI know these are just words but I truly want to thank you for being such a great woman. Thank you for being the calmness I needed in my life. Through everything you stayed strong, a brave and beautiful woman. Thank you so much Aditi.";
 
 let i=0;
 
@@ -107,8 +106,13 @@ document.getElementById("message").innerHTML+=text.charAt(i);
 i++;
 setTimeout(type,40);
 }else{
-document.getElementById("question").style.display="block";
+setTimeout(()=>{next('q1')},1000);
 }
+}
+
+function next(id){
+document.querySelectorAll('.box').forEach(e=>e.style.display="none");
+document.getElementById(id).style.display="block";
 }
 
 function move(){
@@ -124,7 +128,7 @@ explode();
 }
 
 function explode(){
-for(let i=0;i<40;i++){
+for(let i=0;i<50;i++){
 let h=document.createElement("div");
 h.innerHTML="❤️";
 h.classList.add("fheart");
