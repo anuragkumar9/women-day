@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Women's Day Surprise</title>
+<title>Women's Day Surprise ❤️</title>
 
 <style>
 
@@ -34,11 +34,11 @@ animation:beat 1s infinite;
 #message{
 display:none;
 max-width:80%;
-font-size:22px;
+font-size:24px;
 line-height:1.6;
 }
 
-#q1,#q2{
+#question{
 display:none;
 margin-top:25px;
 }
@@ -75,7 +75,6 @@ animation:explode 3s linear forwards;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -84,21 +83,15 @@ animation:explode 3s linear forwards;
 
 <div id="message"></div>
 
-<div id="q1">
-<p>Maheshwari ❤️<br>Will you be mine?</p>
-<button onclick="next()">Yes</button>
-<button id="no" onmouseover="move()">No</button>
-</div>
-
-<div id="q2">
-<p>Will you stay with me through everything?</p>
-<button onclick="final()">Yes</button>
+<div id="question">
+<p>Aditi ❤️<br>Will you be mine?</p>
+<button id="yes" onclick="yes()">Yes</button>
 <button id="no" onmouseover="move()">No</button>
 </div>
 
 <script>
 
-let text="Happy Women's Day Maheshwari ❤️\n\nI know these may seem like just words, but I truly want to thank you for being such a great woman. Thank you for being the calmness I needed in my life. Through everything, you stayed strong — a brave and beautiful woman. Thank you so much Maheshwari.";
+let text="Happy Women's Day Aditi ❤️\n\nI know these are just words, but I truly want to thank you for being such a great woman. Thank you for being the calmness I needed in my life. Through everything you stayed strong, a brave and beautiful woman. Thank you so much Aditi.";
 
 let i=0;
 
@@ -114,24 +107,19 @@ document.getElementById("message").innerHTML+=text.charAt(i);
 i++;
 setTimeout(type,40);
 }else{
-document.getElementById("q1").style.display="block";
+document.getElementById("question").style.display="block";
 }
-}
-
-function next(){
-document.getElementById("q1").style.display="none";
-document.getElementById("q2").style.display="block";
 }
 
 function move(){
-let btn=event.target;
+let btn=document.getElementById("no");
 btn.style.position="absolute";
 btn.style.left=Math.random()*80+"%";
 btn.style.top=Math.random()*80+"%";
 }
 
-function final(){
-document.body.innerHTML="<h1>❤️ Maheshwari ❤️</h1><h2>You just made me the happiest person.</h2>";
+function yes(){
+document.body.innerHTML="<h1>❤️ Aditi ❤️</h1><h2>You just made me the happiest person.</h2>";
 explode();
 }
 
