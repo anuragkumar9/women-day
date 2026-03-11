@@ -12,7 +12,7 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:#000;
+background:black;
 font-family:Arial;
 color:white;
 text-align:center;
@@ -31,11 +31,16 @@ animation:beat 1s infinite;
 100%{transform:scale(1)}
 }
 
-.box{
-max-width:80%;
-font-size:24px;
-line-height:1.6;
+#message{
 display:none;
+max-width:80%;
+font-size:22px;
+line-height:1.6;
+}
+
+#q1,#q2{
+display:none;
+margin-top:25px;
 }
 
 button{
@@ -47,8 +52,16 @@ border-radius:10px;
 cursor:pointer;
 }
 
-#yes{background:#ff4d88;color:white;}
-#no{background:gray;color:white;}
+#yes{
+background:#ff4d88;
+color:white;
+}
+
+#no{
+background:gray;
+color:white;
+position:relative;
+}
 
 .fheart{
 position:absolute;
@@ -62,35 +75,38 @@ animation:explode 3s linear forwards;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div id="heart" onclick="start()">❤️</div>
 
-<div id="message" class="box"></div>
+<div id="message"></div>
 
-<div id="q1" class="box">
-<p>Aditi ❤️<br>Do you know how special you are to me?</p>
-<button onclick="next('q2')">Yes</button>
-<button onclick="next('q2')">Maybe</button>
+<div id="q1">
+<p>Minti ❤️<br>Will you keep being the amazing girl you are?</p>
+<button onclick="next()">Yes</button>
+<button id="no" onmouseover="move()">No</button>
 </div>
 
-<div id="q2" class="box">
-<p>Will you always stay in my life?</p>
-<button onclick="next('q3')">Of course</button>
-<button onclick="next('q3')">I hope so</button>
-</div>
-
-<div id="q3" class="box">
-<p>Will you be mine?</p>
-<button id="yes" onclick="yes()">Yes</button>
+<div id="q2">
+<p>Will you stay in my life and keep making it better?</p>
+<button onclick="final()">Yes</button>
 <button id="no" onmouseover="move()">No</button>
 </div>
 
 <script>
 
-let text="Happy Women's Day Aditi ❤️\n\nI know these are just words but I truly want to thank you for being such a great woman. Thank you for being the calmness I needed in my life. Through everything you stayed strong, a brave and beautiful woman. Thank you so much Aditi.";
+let text=`Happy Women’s Day to the strongest girl I know.
+
+Being far away today sucks, but that doesn’t change how much you mean to me.
+
+The way you handle things, the way you care, and the way you stay strong even on bad days — I respect that a lot.
+
+I’m lucky you’re in my life.
+
+I hope today reminds you how special you really are to me. ❤️`;
 
 let i=0;
 
@@ -104,31 +120,31 @@ function type(){
 if(i<text.length){
 document.getElementById("message").innerHTML+=text.charAt(i);
 i++;
-setTimeout(type,40);
+setTimeout(type,35);
 }else{
-setTimeout(()=>{next('q1')},1000);
+document.getElementById("q1").style.display="block";
 }
 }
 
-function next(id){
-document.querySelectorAll('.box').forEach(e=>e.style.display="none");
-document.getElementById(id).style.display="block";
+function next(){
+document.getElementById("q1").style.display="none";
+document.getElementById("q2").style.display="block";
 }
 
 function move(){
-let btn=document.getElementById("no");
+let btn=event.target;
 btn.style.position="absolute";
 btn.style.left=Math.random()*80+"%";
 btn.style.top=Math.random()*80+"%";
 }
 
-function yes(){
-document.body.innerHTML="<h1>❤️ Aditi ❤️</h1><h2>You just made me the happiest person.</h2>";
+function final(){
+document.body.innerHTML="<h1>❤️ Minti ❤️</h1><p>Sorry my girl... because of me you had to get embarrassed in front of others. I'm really sorry.</p><p>Happy Women's Day.</p>";
 explode();
 }
 
 function explode(){
-for(let i=0;i<50;i++){
+for(let i=0;i<40;i++){
 let h=document.createElement("div");
 h.innerHTML="❤️";
 h.classList.add("fheart");
